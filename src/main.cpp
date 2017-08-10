@@ -4,33 +4,36 @@
 #include "Arduino.h"
 #include "FastLED.h"
 
-#define COLOR_ORDER       GRB
-#define CHIPSET           WS2811
-#define NUM_LEDS          30
-#define MIN_BRIGHTNESS    50
-#define MAX_BRIGHTNESS    200
-#define FRAMES_PER_SECOND 120
+#include "led_channels.h"
+#include "color_wheel.h"
 
-CRGB leds[NUM_LEDS];
+#include "patterns/juggle.h"
+#include "patterns/confetti.h"
 
-void juggle() {
-  fadeToBlackBy( leds, NUM_LEDS, 20);
-  byte dothue = 0;
-  for( int i = 0; i < 8; i++) {
-    leds[beatsin16(i+7,0,NUM_LEDS)] |= CHSV(dothue, 200, 255);
-    dothue += 32;
-  }
+typedef void (*PatternList[])();
+PatternList patterns = { juggle, confetti };
+
+uint8_t patterns_size = 2;
+uint8_t current_pattern = 0;
+
+void next_pattern()
+{
+  current_pattern = (current_pattern + 1) % patterns_size;
 }
 
 void setup()
 {
   delay(3000); // sanity delay
-  FastLED.addLeds<CHIPSET, 5, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  FastLED.addLeds<CHIPSET, 4, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
 }
 
 void loop()
 {
-  juggle();
+  patterns[current_pattern]();
+
   FastLED.show();
   FastLED.delay(1000 / FRAMES_PER_SECOND);
+
+  EVERY_N_SECONDS( 10 ) { next_pattern(); }
+  EVERY_N_MILLISECONDS( 20 ) { current_hue++; }
 }
