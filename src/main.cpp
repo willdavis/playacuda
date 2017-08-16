@@ -7,14 +7,15 @@
 #include "led_channels.h"
 #include "color_wheel.h"
 
+#include "patterns/fuego.h"
 #include "patterns/pulse.h"
 #include "patterns/juggle.h"
 #include "patterns/confetti.h"
 
 typedef void (*PatternList[])();
-PatternList patterns = { juggle, confetti, pulse };
+PatternList patterns = { juggle, confetti, pulse, fuego };
 
-uint8_t patterns_size = 3;
+uint8_t patterns_size = 4;
 uint8_t current_pattern = 0;
 
 void next_pattern()
