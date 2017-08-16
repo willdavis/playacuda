@@ -11,4 +11,8 @@ void pulse()
   for(int i = 0; i < SHORT_LENGTH_LEDS; i++) {
     tail_leds[i] = ColorFromPalette(palette, current_hue+(i*2), beat-current_hue+(i*10));
   }
+
+  for(int i = 0; i < LONG_LENGTH_LEDS; i++) {
+    body_leds[i] = ColorFromPalette(palette, current_hue+(i*2), beat-current_hue+(i*10));
+  }
 }

@@ -10,6 +10,8 @@ CRGB heat_color;
 // Fire2012 by Mark Kriegsman, July 2012
 void fuego()
 {
+  fadeToBlackBy(body_leds, LONG_LENGTH_LEDS, 20);
+
   // Step 1.  Cool down every cell a little
   for(int i = 0; i < SHORT_LENGTH_LEDS; i++) {
     heat[i] = qsub8(heat[i], random8(0, ((COOLING * 10) / SHORT_LENGTH_LEDS) + 2));
@@ -29,6 +31,8 @@ void fuego()
   // Step 4.  Map from heat cells to LED colors
   for(int j = 0; j < SHORT_LENGTH_LEDS; j++) {
     heat_color = HeatColor(heat[j]);
+
     tail_leds[j] = heat_color;
+    body_leds[j] = heat_color;
   }
 }

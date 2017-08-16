@@ -13,7 +13,7 @@
 #include "patterns/confetti.h"
 
 typedef void (*PatternList[])();
-PatternList patterns = { juggle, confetti, pulse, fuego };
+PatternList patterns = { fuego, juggle, confetti, pulse };
 
 uint8_t patterns_size = 4;
 uint8_t current_pattern = 0;
@@ -26,7 +26,8 @@ void next_pattern()
 void setup()
 {
   delay(3000); // sanity delay
-  FastLED.addLeds<CHIPSET, 0, COLOR_ORDER>(tail_leds, SHORT_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<CHIPSET, 3, COLOR_ORDER>(tail_leds, SHORT_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<CHIPSET, 4, COLOR_ORDER>(body_leds, LONG_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
 }
 
 void loop()
