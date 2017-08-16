@@ -15,4 +15,8 @@ void pulse()
   for(int i = 0; i < LONG_LENGTH_LEDS; i++) {
     body_leds[i] = ColorFromPalette(palette, current_hue+(i*2), beat-current_hue+(i*10));
   }
+
+  for(int i = 0; i < MEDIUM_LENGTH_LEDS; i++) {
+    lips_leds[i] = ColorFromPalette(palette, current_hue+(i*2), beat-current_hue+(i*10));
+  }
 }

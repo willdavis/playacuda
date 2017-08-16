@@ -12,6 +12,10 @@ void fuego()
 {
   fadeToBlackBy(body_leds, LONG_LENGTH_LEDS, 20);
 
+  for(int i=0; i < MEDIUM_LENGTH_LEDS; i++) {
+    lips_leds[i] = CRGB::Red;
+  }
+
   // Step 1.  Cool down every cell a little
   for(int i = 0; i < SHORT_LENGTH_LEDS; i++) {
     heat[i] = qsub8(heat[i], random8(0, ((COOLING * 10) / SHORT_LENGTH_LEDS) + 2));
