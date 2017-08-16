@@ -24,7 +24,7 @@ void next_pattern()
 void setup()
 {
   delay(3000); // sanity delay
-  FastLED.addLeds<CHIPSET, 4, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  FastLED.addLeds<CHIPSET, 0, COLOR_ORDER>(tail_leds, SHORT_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
 }
 
 void loop()
