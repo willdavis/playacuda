@@ -12,4 +12,8 @@ void juggle() {
     lips_leds[beatsin16(i+7,0,MEDIUM_LENGTH_LEDS)] |= CHSV(dothue, 200, 255);
     dothue += 32;
   }
+
+  for(int i=0; i < RIB_LENGTH_LEDS; i++) {
+    ribs_leds[i] = CHSV(current_hue, 200, 255);
+  }
 }

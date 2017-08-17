@@ -29,6 +29,7 @@ void setup()
   FastLED.addLeds<CHIPSET, 3, COLOR_ORDER>(tail_leds, SHORT_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.addLeds<CHIPSET, 4, COLOR_ORDER>(body_leds, LONG_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.addLeds<CHIPSET, 5, COLOR_ORDER>(lips_leds, MEDIUM_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<CHIPSET, 6, COLOR_ORDER>(ribs_leds, RIB_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
 }
 
 void loop()

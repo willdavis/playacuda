@@ -11,9 +11,10 @@ CRGB heat_color;
 void fuego()
 {
   fadeToBlackBy(body_leds, LONG_LENGTH_LEDS, 20);
+  fadeToBlackBy(lips_leds, MEDIUM_LENGTH_LEDS, 20);
 
-  for(int i=0; i < MEDIUM_LENGTH_LEDS; i++) {
-    lips_leds[i] = CRGB::Red;
+  for(int i=0; i < RIB_LENGTH_LEDS; i++) {
+    ribs_leds[i] = CRGB::Green;
   }
 
   // Step 1.  Cool down every cell a little
@@ -38,5 +39,6 @@ void fuego()
 
     tail_leds[j] = heat_color;
     body_leds[j] = heat_color;
+    lips_leds[j] = heat_color;
   }
 }

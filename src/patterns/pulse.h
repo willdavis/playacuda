@@ -19,4 +19,8 @@ void pulse()
   for(int i = 0; i < MEDIUM_LENGTH_LEDS; i++) {
     lips_leds[i] = ColorFromPalette(palette, current_hue+(i*2), beat-current_hue+(i*10));
   }
+
+  for(int i=0; i < RIB_LENGTH_LEDS; i++) {
+    ribs_leds[i] = CRGB::Blue;
+  }
 }
