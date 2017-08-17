@@ -13,6 +13,10 @@ void juggle() {
     dothue += 32;
   }
 
+  for(int i=0; i < TEETH_LENGTH_LEDS; i++) {
+    teeth_leds[i] = CRGB::Green;
+  }
+
   for(int i=0; i < RIB_LENGTH_LEDS; i++) {
     ribs_leds[i] = CHSV(current_hue, 200, 255);
   }

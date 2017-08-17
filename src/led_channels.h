@@ -11,7 +11,7 @@
 #define MEDIUM_LENGTH_LEDS  45
 #define LONG_LENGTH_LEDS    60
 #define RIB_LENGTH_LEDS     23
-#define TEETH_LENGTH_LEDS   3
+#define TEETH_LENGTH_LEDS   7
 
 CRGB tail_leds[SHORT_LENGTH_LEDS];
 CRGB body_leds[LONG_LENGTH_LEDS];

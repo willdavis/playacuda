@@ -15,6 +15,10 @@ void confetti()
   body_leds[long_pos] += CHSV(current_hue + random8(64), 200, 255);
   lips_leds[medium_pos] += CHSV(current_hue + random8(64), 200, 255);
 
+  for(int i=0; i < TEETH_LENGTH_LEDS; i++) {
+    teeth_leds[i] = CRGB::Yellow;
+  }
+
   for(int i=0; i < RIB_LENGTH_LEDS; i++) {
     ribs_leds[i] = CHSV(current_hue, 200, 255);
   }

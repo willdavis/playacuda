@@ -13,8 +13,12 @@ void fuego()
   fadeToBlackBy(body_leds, LONG_LENGTH_LEDS, 20);
   fadeToBlackBy(lips_leds, MEDIUM_LENGTH_LEDS, 20);
 
+  for(int i=0; i < TEETH_LENGTH_LEDS; i++) {
+    teeth_leds[i] = CRGB::Blue;
+  }
+
   for(int i=0; i < RIB_LENGTH_LEDS; i++) {
-    ribs_leds[i] = CRGB::Green;
+    ribs_leds[i] = CRGB::Red;
   }
 
   // Step 1.  Cool down every cell a little
