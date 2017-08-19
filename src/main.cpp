@@ -7,6 +7,7 @@
 #include "led_channels.h"
 #include "color_wheel.h"
 
+#include "patterns/idle.h"
 #include "patterns/fuego.h"
 #include "patterns/pulse.h"
 #include "patterns/juggle.h"
@@ -15,8 +16,7 @@
 #define POWER_MODE_PIN 9
 
 typedef void (*PatternList[])();
-PatternList swimming_patterns = { fuego, juggle, confetti, pulse };
-PatternList idle_pattern = { confetti };
+PatternList patterns = { fuego, juggle, confetti, pulse };
 
 uint8_t patterns_size = 4;
 uint8_t current_pattern = 0;
@@ -43,9 +43,9 @@ void loop()
   // check the power mode toggle switch
   // HIGH = swimming, LOW = idle
   if(digitalRead(POWER_MODE_PIN)) {
-    swimming_patterns[current_pattern]();
+    patterns[current_pattern]();
   } else {
-    idle_pattern[0]();
+    idle();
   }
 
   FastLED.show();
