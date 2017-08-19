@@ -12,8 +12,11 @@
 #include "patterns/juggle.h"
 #include "patterns/confetti.h"
 
+#define POWER_MODE_PIN 9
+
 typedef void (*PatternList[])();
-PatternList patterns = { fuego, juggle, confetti, pulse };
+PatternList swimming_patterns = { fuego, juggle, confetti, pulse };
+PatternList idle_pattern = { confetti };
 
 uint8_t patterns_size = 4;
 uint8_t current_pattern = 0;
@@ -26,6 +29,8 @@ void next_pattern()
 void setup()
 {
   delay(3000); // sanity delay
+  pinMode(POWER_MODE_PIN,INPUT_PULLUP);  // Power mode - LOW= Idle, HIGH= Swimming
+
   FastLED.addLeds<CHIPSET, 3, COLOR_ORDER>(tail_leds, SHORT_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.addLeds<CHIPSET, 4, COLOR_ORDER>(body_leds, LONG_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.addLeds<CHIPSET, 5, COLOR_ORDER>(lips_leds, MEDIUM_LENGTH_LEDS).setCorrection(TypicalLEDStrip);
@@ -35,7 +40,13 @@ void setup()
 
 void loop()
 {
-  patterns[current_pattern]();
+  // check the power mode toggle switch
+  // HIGH = swimming, LOW = idle
+  if(digitalRead(POWER_MODE_PIN)) {
+    swimming_patterns[current_pattern]();
+  } else {
+    idle_pattern[0]();
+  }
 
   FastLED.show();
   FastLED.delay(1000 / FRAMES_PER_SECOND);
